@@ -1,5 +1,6 @@
 package com.cydeo.day02;
 
+import com.cydeo.pojo.Search;
 import com.cydeo.pojo.Spartan;
 import com.cydeo.utility.SpartanTestBase;
 import io.restassured.http.ContentType;
@@ -82,5 +83,33 @@ public class P07_JsonToPOJO extends SpartanTestBase {
 
 
     }
+
+
+    @Test
+    public void searchSpartanPOJO(){
+
+        Response response = given().accept(ContentType.JSON)
+                .queryParams("nameContains", "f", "gender", "Female")
+                .when().get("/spartans/search")
+                .then()
+                .statusCode(HttpStatus.SC_OK)
+                .contentType(ContentType.JSON.toString()).extract().response();
+
+        JsonPath jsonPath = response.jsonPath();
+
+        Search search = jsonPath.getObject("", Search.class);
+
+        System.out.println(search.getContent().get(0));
+
+        //get how many spartans we have
+
+        System.out.println("search.getTotalElement() = " + search.getTotalElement());
+
+        //get first spartan name
+        System.out.println(search.getContent().get(0).getName());
+
+
+    }
+
 
 }
