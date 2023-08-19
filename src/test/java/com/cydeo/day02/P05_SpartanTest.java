@@ -35,6 +35,7 @@ public class P05_SpartanTest extends SpartanTestBase {
                 .log().all()
                 .when().get("/spartans/search")
                 .then()
+                .log().ifValidationFails()
                 .statusCode(HttpStatus.SC_OK)
                 .contentType(ContentType.JSON.toString())
                 .body("totalElement", is(4))
