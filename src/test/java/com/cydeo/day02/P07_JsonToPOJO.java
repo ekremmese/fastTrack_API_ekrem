@@ -99,6 +99,8 @@ public class P07_JsonToPOJO extends SpartanTestBase {
 
         Search search = jsonPath.getObject("", Search.class);
 
+
+        /*
         System.out.println(search.getContent().get(0));
 
         //get how many spartans we have
@@ -107,6 +109,12 @@ public class P07_JsonToPOJO extends SpartanTestBase {
 
         //get first spartan name
         System.out.println(search.getContent().get(0).getName());
+
+         */
+
+        System.out.println("search.getAllSpartans().size() = " + search.getAllSpartans().size());
+
+        System.out.println("search.getAllSpartans().get(0).getName() = " + search.getAllSpartans().get(0).getName());
 
 
     }

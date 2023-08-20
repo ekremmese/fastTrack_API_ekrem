@@ -1,0 +1,8 @@
+admin,admin,200
+editor,editor,200
+user,user,200
+guest,guest,401
+editor,editor,403
+user,user,403
+guest,guest,401
+admin,admin,204

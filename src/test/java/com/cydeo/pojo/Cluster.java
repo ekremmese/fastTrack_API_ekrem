@@ -6,11 +6,11 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class Search {
-    @JsonProperty("content")
-    private List<Spartan> allSpartans;
-    private int totalElement;
+public class Cluster {
 
-
+    private int id;
+    private String name;
+    @JsonProperty("rooms")
+    private List<Room> roomList;
 
 }
