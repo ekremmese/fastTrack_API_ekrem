@@ -4,11 +4,15 @@ package com.cydeo.day04;
 import com.cydeo.utility.FormulaOneTestBase;
 import io.restassured.path.xml.XmlPath;
 import io.restassured.response.Response;
+import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import static io.restassured.RestAssured.*;
+import static org.hamcrest.Matchers.*;
+
 
 
 public class P01_FormulaXML extends FormulaOneTestBase {
@@ -18,7 +22,13 @@ public class P01_FormulaXML extends FormulaOneTestBase {
 
         Response response = given().get("/drivers")
                 //.prettyPeek()
-                .then().statusCode(200).extract().response();
+                .then().statusCode(200)
+                .time(both(greaterThan(500L)).and(lessThan(1000L)))
+                .extract().response();
+
+        System.out.println("response.getTimeIn(TimeUnit.MILLISECONDS) = " + response.getTimeIn(TimeUnit.MILLISECONDS));
+
+        //time(both(greaterThan(500L)).and(lessThan(1000L)))
 
         XmlPath xmlPath = response.xmlPath();
 
