@@ -36,7 +36,7 @@ public class P06_JsonToJava  extends SpartanTestBase {
                 .when().get("/spartans/{id}")
                 .then()
                 .statusCode(HttpStatus.SC_OK)
-                .contentType(ContentType.JSON.toString())
+                .contentType(ContentType.JSON)
                 .body("id", is(10))
                 .body("name", is("Lorenza"))
                 .body("phone", is(3312820936L)).extract().response();

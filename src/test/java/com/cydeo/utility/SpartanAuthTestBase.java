@@ -29,19 +29,19 @@ public abstract class SpartanAuthTestBase {
     }
 
 
-    public static RequestSpecification requestSpec(){
+    public static RequestSpecification requestSpec(String username,String password){
 
         RequestSpecification requestSpec = given().accept(ContentType.JSON)
-                .auth().basic("admin", "admin");
+                .auth().basic(username, password);
 
         return  requestSpec;
 
     }
 
-    public static ResponseSpecification responseSpec(){
+    public static ResponseSpecification responseSpec(int statusCode){
 
-        ResponseSpecification responseSpec = expect().contentType(ContentType.JSON)
-                .statusCode(200);
+        ResponseSpecification responseSpec = expect()//.contentType(ContentType.JSON)
+                .statusCode(statusCode);
 
         return  responseSpec;
     }
